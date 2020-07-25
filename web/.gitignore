@@ -1,10 +1,2 @@
-<<<<<<< HEAD
 node_modules
-=======
-Team*.zip
-*.pem
-*.ppk
-*.crt
-*.key
-*.ovpn
->>>>>>> bd974a3bfefddda9e6c51f0c628e8108dc3019ff
+.env
