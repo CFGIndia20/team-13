@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
          name,
       });
       await newDistrict.save();
-      res.status(200).send('Saved');
+      res.status(200).json(newDistrict);
    } catch (err) {
       res.status(403).send(err);
    }

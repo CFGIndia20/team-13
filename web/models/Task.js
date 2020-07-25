@@ -21,13 +21,16 @@ const taskSchema = mongoose.Schema({
    approvedQuantity: {
       type: Number,
       default: 0,
-      required: true,
    },
    image: {
       type: Buffer,
    },
    imageType: {
       type: String,
+   },
+   lastModified: {
+      type: Date,
+      default: Date.now,
    },
    isApproved: {
       type: Boolean,

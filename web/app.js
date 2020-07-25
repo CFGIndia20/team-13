@@ -49,6 +49,8 @@ app.use('/users', require('./routes/auth'));
 app.use('/skills', require('./routes/skills'));
 app.use('/districts', require('./routes/district'));
 app.use('/women', require('./routes/woman'));
+app.use('/product', require('./routes/product'));
+app.use('/order', require('./routes/order'));
 
 app.use(errorController.get404);
 

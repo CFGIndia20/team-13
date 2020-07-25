@@ -53,6 +53,16 @@ router.get('/:districtId', async (req, res) => {
    }
 });
 
+// Get all women by district id
+router.get('/sort/hours', async (req, res) => {
+   try {
+      const women = await Woman.find().sort('-amountOfHours -efficiency');
+      res.status(200).send(women);
+   } catch (err) {
+      res.status(403).send(err);
+   }
+});
+
 // Register woman
 router.post('/register', async (req, res) => {
    try {

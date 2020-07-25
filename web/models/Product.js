@@ -8,10 +8,11 @@ const productSchema = mongoose.Schema({
    skill: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Skill',
+      required: true,
    },
    hours: {
       type: Number,
-      default: 0,
+      required: true,
    },
 });
 

@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
          name,
       });
       await newSkill.save();
-      res.status(200).send('Saved');
+      res.status(200).json(newSkill);
    } catch (err) {
       res.status(403).send(err);
    }
