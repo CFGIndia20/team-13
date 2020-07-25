@@ -8,6 +8,7 @@ const Woman = require('../models/Woman');
 router.post('/login', async (req, res) => {
    try {
       const { phone, password } = req.body;
+      console.log(phone, password);
       Woman.findOne({ phone: phone })
          .then((user) => {
             if (!user) {
@@ -18,7 +19,7 @@ router.post('/login', async (req, res) => {
             bcrypt.compare(password, user.password, (err, isMatch) => {
                if (err) throw err;
                if (isMatch) {
-                  res.status(200).json(woman);
+                  res.status(200).json(user);
                } else {
                   res.status(403).json({
                      msg: 'Password incorrect',
@@ -27,8 +28,6 @@ router.post('/login', async (req, res) => {
             });
          })
          .catch((err) => console.error(err));
-
-      res.status(200).send(districts);
    } catch (err) {
       res.status(403).send(err);
    }
