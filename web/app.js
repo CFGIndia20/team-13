@@ -1,11 +1,21 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const errorController = require('./controllers/error');
 
 const app = express();
+
+// Connect to Mongo
+mongoose.connect(process.env.MONGO_URL, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Mongoose'));
 
 // Middleware
 app.set('view engine', 'ejs');

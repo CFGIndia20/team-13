@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Login Route
 router.get('/login', (req, res) => {
-   res.send('login');
+   res.render('auth/login', { pageTitle: 'Login', path: '/login' });
 });
 
 module.exports = router;
