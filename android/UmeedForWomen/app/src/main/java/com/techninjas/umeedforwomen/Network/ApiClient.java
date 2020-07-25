@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static Retrofit retrofit;
 
-    static Retrofit getClient() {
+    public static Retrofit getClient() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(7000, TimeUnit.SECONDS)
                 .writeTimeout(7000, TimeUnit.SECONDS)
