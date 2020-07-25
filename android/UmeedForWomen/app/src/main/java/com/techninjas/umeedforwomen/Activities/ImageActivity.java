@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -31,10 +32,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.techninjas.umeedforwomen.R;
 import com.techninjas.umeedforwomen.Utils.Constants;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,12 +57,13 @@ public class ImageActivity extends AppCompatActivity {
     // Elements
     private ImageButton ibBack;
     private ImageView ivImage;
-    private Button btnSave;
+    //private Button btnSave;
+    private TextView status;
     private ProgressBar progressBar;
 
     private String tempFilePath, compressedFilePath;
     private Uri tempPhotoUri, compressedPhotoUri;
-    private boolean imageUploaded = false;
+    private boolean imageSaved = false;
     private static final int CAMERA_REQUEST = 120;
     private static final int PERMISSION_CODE = 1234;
 
@@ -73,14 +78,14 @@ public class ImageActivity extends AppCompatActivity {
         // Clicks
         ibBack.setOnClickListener(view -> this.onBackPressed());
 
-        btnSave.setOnClickListener(view -> {
-            if (imageUploaded && compressedPhotoUri != null) {
+        /*btnSave.setOnClickListener(view -> {
+            if (imageSaved && compressedPhotoUri != null) {
 //                Intent intent = new Intent(ImageActivity.this, FormActivity.class);
 //                intent.putExtra(Constants.PHOTO_PATH, compressedFilePath);
 //                startActivity(intent);
 //                this.finish();
             } else Toast.makeText(this, "Please upload an image first", Toast.LENGTH_SHORT).show();
-        });
+        });*/
     }
 
     private void init() {
@@ -88,7 +93,8 @@ public class ImageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ibBack = findViewById(R.id.ibImageBack);
         ivImage = findViewById(R.id.ivImage);
-        btnSave = findViewById(R.id.btnImageSave);
+        //btnSave = findViewById(R.id.btnImageSave);
+        status = findViewById(R.id.status);
         progressBar = findViewById(R.id.progressBarImage);
 
         checkPermissions();
@@ -367,7 +373,15 @@ public class ImageActivity extends AppCompatActivity {
 
             compressedPhotoUri = Uri.parse(compressedFilePath);
             ivImage.setImageURI(compressedPhotoUri);
-            imageUploaded = true;
+            imageSaved = true;
+            status.setText("Image Saved Locally!");
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    successfulEnding();
+                }
+            }, 3000);
         }
     }
 
@@ -385,9 +399,13 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
+    private void successfulEnding(){
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {
-        if (imageUploaded) {
+        if (imageSaved) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Are you sure you want to go back?")
                     .setMessage("All unsaved changes will be lost")
