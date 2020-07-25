@@ -9,8 +9,7 @@ public class SharedPrefUtil {
 
     // properties
     private static final String NAME = "NAME";
-    // other properties...
-
+    private static final String ID = "ID";
 
     private SharedPrefUtil() {}
 
@@ -28,9 +27,20 @@ public class SharedPrefUtil {
         editor.apply();
     }
 
-    public static void removeName(Context context){
+    public static String getId(Context context) {
+        return getSharedPreferences(context).getString(ID , null);
+    }
+
+    public static void setId(Context context, String newValue) {
+        final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(ID , newValue);
+        editor.apply();
+    }
+
+    public static void removeAll(Context context){
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.remove(NAME);
+        editor.remove(ID);
         editor.apply();
     }
 

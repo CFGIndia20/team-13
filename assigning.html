@@ -53,18 +53,19 @@
     <link href="dashboard.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: purple;">
-  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Umeed for Women</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color:white;>
+        <a class="navbar-brand" href="#" style="max-width: 10%;">
+            <img src="/umeed.jpeg" width="200" height="100" >
+         </a>
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#" style="color:purple;font-size:40px;" ><strong>UMEED FOR WOMAN</strong></a>
+</a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
+      <a class="nav-link" href="#"style="color:purple" >Sign out</a>
     </li>
   </ul>
 </nav>
+
 
 <div class="container-fluid">
   <div class="row">
@@ -72,39 +73,34 @@
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="Orders.html">
               <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Orders<span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
-            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="newpay.html">
               <span data-feather="shopping-cart"></span>
-              Assign
+              Pay
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="attendance.html">
               <span data-feather="users"></span>
-              Quality Assurance
+              attendance
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="qualitycheck.html">
               <span data-feather="bar-chart-2"></span>
-              Compensation
+              Qualitycheck
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="assigning.html">
               <span data-feather="layers"></span>
-              Integrations
+              assigning jobs
             </a>
           </li>
         </ul>
@@ -115,60 +111,91 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Assign task</h1>
-        <!--<div class="btn-toolbar mb-2 mb-md-0">
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>-->
       </div>
-      <div class="container-fluid">
-        <form>
-            <div class="form-row">
-              <div class="form-group col-md-3">
-                <label for="inputEmail4">Name</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="inputPassword4">Id</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-            </div>
-            <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputAddress">Order</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="Enter order Id">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputAddress2">Task</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Enter task Id">
-            </div>
-            </div>
-            <div class="form-row">
-              <!--<div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>-->
-              <div class="form-group col-md-4">
-                <label for="inputState">District</label>
-                <select id="inputState" class="form-control">
-                  <option selected>District 1</option>
-                  <option >District 2</option>
-                  <option >District 3</option>
-                  <option >District 4</option>
-                </select>
-              </div>
-            </div>
-            <!--<div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div>-->
-            <button type="submit" class="btn btn-primary">Assign</button>
-          </form>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="width: 15%">#</th>
+            <th scope="col" style="width: 25%">Name</th>
+            <th scope="col" style="width: 20%">District</th>
+            <th scope="col" style="width: 20%">Efficiency</th>
+            <th scope="col" style="width: 20%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Name 1</td>
+            <td>District 1</td>
+            <td>75%</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Assign
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Assign</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Order ID</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                    </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">Number of Tasks to be assigned</label>
+                                  <input type="text" class="form-control" id="formGroupExampleInput2">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Name 2</td>
+            <td>District 2</td>
+            <td>80%</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Assign
+                  </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Name 3</td>
+            <td>District 3</td>
+            <td>78%</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Assign
+                  </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        
     </main>
 
     </div>

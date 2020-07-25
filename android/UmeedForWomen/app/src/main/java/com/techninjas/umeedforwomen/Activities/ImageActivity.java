@@ -10,6 +10,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -40,15 +42,18 @@ import com.techninjas.umeedforwomen.Utils.Constants;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static android.os.Environment.getExternalStoragePublicDirectory;
+import static com.techninjas.umeedforwomen.Utils.ImageEncodeUtil.encodeFile;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -375,6 +380,8 @@ public class ImageActivity extends AppCompatActivity {
             ivImage.setImageURI(compressedPhotoUri);
             imageSaved = true;
             status.setText("Image Saved Locally!");
+            //Log.d("APP_LOGS", encodeFile(ImageActivity.this, compressedPhotoUri));
+            encodeFile(ImageActivity.this, compressedPhotoUri);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override

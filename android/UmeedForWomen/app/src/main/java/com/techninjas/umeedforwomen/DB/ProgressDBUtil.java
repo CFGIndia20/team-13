@@ -68,4 +68,9 @@ public class ProgressDBUtil extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = ?", new String[] {String.valueOf(id)});
     }
+
+    public void deleteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE from " + TABLE_NAME + ";");
+    }
 }
