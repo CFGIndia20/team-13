@@ -90,6 +90,8 @@ public class ImageActivity extends AppCompatActivity {
         ivImage = findViewById(R.id.ivImage);
         btnSave = findViewById(R.id.btnImageSave);
         progressBar = findViewById(R.id.progressBarImage);
+
+        checkPermissions();
     }
 
     private void checkPermissions() {
@@ -107,7 +109,7 @@ public class ImageActivity extends AppCompatActivity {
                 permissionsList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             if (!fineLocationPermission)
                 permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-
+            Log.d("APP_LOGS", permissionsList.toString());
             if (permissionsList.size() == 0) {
                 dispatchCameraIntent();
                 return;

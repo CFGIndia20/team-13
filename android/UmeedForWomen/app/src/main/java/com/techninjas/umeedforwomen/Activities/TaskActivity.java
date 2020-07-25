@@ -2,6 +2,7 @@ package com.techninjas.umeedforwomen.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.Objects;
 
 public class TaskActivity extends AppCompatActivity {
     private TextView nameView;
-    private Button saveButton;
+    private Button saveButton, uploadButton;
     private FluidSlider slider;
 
     @Override
@@ -27,16 +28,23 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task);
 
         saveButton = findViewById(R.id.saveButton);
+        uploadButton = findViewById(R.id.uploadButton);
         slider = findViewById(R.id.slider);
         nameView = findViewById(R.id.welcome);
 
-        String name = "XYZ";
+        String name = getIntent() == null ? "XYZ" : getIntent().getStringExtra("name");
         nameView.setText("Welcome, " + name + "!");
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveProgess();
+            }
+        });
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TaskActivity.this, ImageActivity.class));
             }
         });
     }
