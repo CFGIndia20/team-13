@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
    },
    skill: {
       type: mongoose.Schema.Types.ObjectId,
-      rel: 'Skill',
+      ref: 'Skill',
    },
    hours: {
       type: Number,

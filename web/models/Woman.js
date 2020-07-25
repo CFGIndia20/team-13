@@ -12,12 +12,12 @@ const womanSchema = mongoose.Schema({
    district: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      rel: 'District',
+      ref: 'District',
    },
    skills: [
       {
          type: mongoose.Schema.Types.ObjectId,
-         rel: 'Skill',
+         ref: 'Skill',
       },
    ],
    phone: {

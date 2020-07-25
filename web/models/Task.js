@@ -3,17 +3,22 @@ const mongoose = require('mongoose');
 const taskSchema = mongoose.Schema({
    order: {
       type: mongoose.Schema.Types.ObjectId,
-      rel: 'Order',
+      ref: 'Order',
    },
    product: {
       type: mongoose.Schema.Types.ObjectId,
-      rel: 'Product',
+      ref: 'Product',
    },
    woman: {
       type: mongoose.Schema.Types.ObjectId,
-      rel: 'Woman',
+      ref: 'Woman',
    },
    quantity: {
+      type: Number,
+      default: 0,
+      required: true,
+   },
+   approvedQuantity: {
       type: Number,
       default: 0,
       required: true,
@@ -37,5 +42,12 @@ taskSchema.virtual('imagePath').get(function () {
       )}`;
    }
 });
+
+taskSchema.virtual(
+   'efficiency',
+   get(function () {
+      return this.quantity != 0 ? this.approvedQuantity / this.quantity : 0;
+   })
+);
 
 module.exports = mongoose.model('Task', taskSchema);
