@@ -21,6 +21,7 @@ import com.techninjas.umeedforwomen.Network.ApiClient;
 import com.techninjas.umeedforwomen.Network.ApiInterface;
 import com.techninjas.umeedforwomen.R;
 import com.techninjas.umeedforwomen.Utils.Constants;
+import com.techninjas.umeedforwomen.Utils.SharedPrefUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,13 +72,12 @@ public class MainActivity extends AppCompatActivity {
             proceed("Asha");
         });
 
-        //startActivity(new Intent(MainActivity.this, ImageActivity.class));
     }
 
     private void proceed(String name){
-        Intent intent = new Intent(MainActivity.this, TaskActivity.class);
-        intent.putExtra("name", name);
-        startActivity(intent);
+        SharedPrefUtil.setName(this, name);
+        startActivity(new Intent(MainActivity.this, TaskActivity.class));
+        finish();
     }
 
     private void authCredentials(String mobileNo, String password){
