@@ -73,7 +73,7 @@
 
         <Button
             android:id="@+id/btnImageSave"
-            android:background="@drawable/button_style_1"
+            android:background="@color/umeedPink"
             android:text="Save"
             android:textColor="@color/white"
             android:textSize="18sp"
