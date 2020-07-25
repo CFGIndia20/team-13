@@ -57,3 +57,56 @@ app.use(errorController.get404);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, console.log(`Server started at port ${PORT}`));
+
+const Woman = require('./models/Woman');
+
+// Reset compensation on the 5th day of every month
+const schedule = require('node-schedule');
+const Task = require('./models/Task');
+const Product = require('./models/Product');
+let rule = new schedule.RecurrenceRule();
+rule.month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+rule.date = 5;
+rule.hour = 0;
+rule.minute = 0;
+
+let resetJob = schedule.scheduleJob(rule, async () => {
+   try {
+      await Woman.update({}, { $set: { compensation: 0 } }, { multi: true });
+   } catch (err) {
+      console.log(err);
+   }
+});
+
+// Calculate compensation on the 1st day of every month
+let rule2 = new schedule.RecurrenceRule();
+rule2.month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+rule2.date = 1;
+rule2.hour = 0;
+rule2.minute = 0;
+
+let calculateJob = schedule.scheduleJob(rule2, async () => {
+   try {
+      const month = new Date().getMonth();
+      const women = await Woman.find();
+      for (woman in women) {
+         let hours = 0;
+         const tasks = await Task.find({
+            $expr: {
+               $eq: [{ $month: '$date' }, month],
+            },
+         });
+         for (task in tasks) {
+            const product = await Product.findById(task.product);
+            hours += task.approvedQuantity * product.hours;
+         }
+         const compensation = hours * 19 + woman.noOfSessions * 200;
+         await Woman.findByIdAndUpdate(
+            { id: woman._id },
+            { compensation: compensation }
+         );
+      }
+   } catch (err) {
+      console.log(err);
+   }
+});

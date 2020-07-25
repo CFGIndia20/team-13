@@ -36,6 +36,10 @@ const taskSchema = mongoose.Schema({
       type: Boolean,
       default: false,
    },
+   date: {
+      type: Date,
+      default: Date.now,
+   },
 });
 
 taskSchema.virtual('imagePath').get(function () {
@@ -46,11 +50,8 @@ taskSchema.virtual('imagePath').get(function () {
    }
 });
 
-taskSchema.virtual(
-   'efficiency',
-   get(function () {
-      return this.quantity != 0 ? this.approvedQuantity / this.quantity : 0;
-   })
-);
+taskSchema.virtual('efficiency').get(function () {
+   return this.quantity != 0 ? this.approvedQuantity / this.quantity : 0;
+});
 
 module.exports = mongoose.model('Task', taskSchema);
