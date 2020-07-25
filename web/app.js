@@ -26,7 +26,8 @@ db.once('open', () => console.log('Connected to Mongoose'));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
@@ -45,6 +46,9 @@ app.use(passport.session());
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/auth'));
+app.use('/skills', require('./routes/skills'));
+app.use('/districts', require('./routes/district'));
+app.use('/women', require('./routes/woman'));
 
 app.use(errorController.get404);
 

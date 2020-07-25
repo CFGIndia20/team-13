@@ -28,9 +28,21 @@ const womanSchema = mongoose.Schema({
       type: Number,
       default: 0,
    },
+   efficiency: {
+      type: Number,
+      default: 0,
+   },
    amountOfHours: {
       type: Number,
       default: 0,
+   },
+   noOfSessions: {
+      type: Number,
+      default: 0,
+   },
+   isFree: {
+      type: Boolean,
+      default: true,
    },
 });
 
