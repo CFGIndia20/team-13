@@ -4,6 +4,7 @@
    "description": "jpmc",
    "main": "app.js",
    "dependencies": {
+      "bcryptjs": "^2.4.3",
       "brcypt": "^1.0.1",
       "connect-flash": "^0.1.1",
       "dotenv": "^8.2.0",
