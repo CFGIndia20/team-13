@@ -1,25 +1,31 @@
 {
-  "name": "team-13",
-  "version": "1.0.0",
-  "description": "jpmc",
-  "main": "app.js",
-  "dependencies": {
-    "ejs": "^3.1.3",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CFGIndia20/team-13.git"
-  },
-  "author": "deeksha",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CFGIndia20/team-13/issues"
-  },
-  "homepage": "https://github.com/CFGIndia20/team-13#readme"
+   "name": "team-13",
+   "version": "1.0.0",
+   "description": "jpmc",
+   "main": "app.js",
+   "dependencies": {
+      "ejs": "^3.1.3",
+      "express": "^4.17.1",
+      "express-ejs-layouts": "^2.5.0",
+      "express-sessions": "^1.0.6",
+      "passport": "^0.4.1",
+      "passport-local": "^1.0.0"
+   },
+   "devDependencies": {
+      "nodemon": "^2.0.4"
+   },
+   "scripts": {
+      "start": "node app.js",
+      "dev": "nodemon app.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/CFGIndia20/team-13.git"
+   },
+   "author": "deeksha",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/CFGIndia20/team-13/issues"
+   },
+   "homepage": "https://github.com/CFGIndia20/team-13#readme"
 }
