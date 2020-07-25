@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/auth'));
 
 app.use(errorController.get404);
 
