@@ -18,6 +18,11 @@ const taskSchema = mongoose.Schema({
       default: 0,
       required: true,
    },
+   currentQuantity: {
+      type: Number,
+      default: 0,
+      required: true,
+   },
    approvedQuantity: {
       type: Number,
       default: 0,

@@ -78,4 +78,50 @@ router.post('/assign', async (req, res) => {
    }
 });
 
+// Upload Image API
+router.post('/upload', async (req, res) => {
+   try {
+      const { taskId, image, imageType, timestamp } = req.body;
+      if (image == null) return res.status(403).json({ msg: 'Image is null' });
+      if (imageType == 'jpg' || imageType == 'png') {
+         const buffer = Buffer.from(image, 'base64');
+         const type = 'image/' + imageType;
+         const date = new Date(timestamp);
+         const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+         ];
+         const formattedDate =
+            date.getDate() +
+            ' ' +
+            months[date.getMonth()] +
+            ' ' +
+            date.getFullYear() +
+            ' ' +
+            date.getHours() +
+            ':' +
+            date.getMinutes();
+         await Task.findByIdAndUpdate(taskId, {
+            image: buffer,
+            imageType: type,
+         });
+         res.status(200).send({ msg: 'Successful' });
+      }
+
+      res.status(200).send(task);
+   } catch (err) {
+      res.status(403).send(err);
+   }
+});
+
 module.exports = router;
