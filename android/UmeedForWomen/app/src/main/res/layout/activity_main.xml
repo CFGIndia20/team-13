@@ -95,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/number"
                 android:inputType="number"
-                android:hint="Mobile No." />
+                android:hint="Mobile No."
+                android:fontFamily="@font/lato"/>
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -108,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/password"
                 android:inputType="textPassword"
-                android:hint="Password" />
+                android:hint="Password"
+                android:fontFamily="@font/lato"/>
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -120,6 +122,7 @@
         android:text="Login"
         android:background="@color/umeedPink"
         android:textColor="@color/white"
+        android:fontFamily="@font/lato"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userFields"
         app:layout_constraintBottom_toBottomOf="parent"

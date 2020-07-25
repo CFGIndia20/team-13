@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class TaskActivity extends AppCompatActivity {
     private TextView nameView;
-    private Button saveButton, uploadButton;
+    private Button saveButton, photoButton, uploadButton;
     private FluidSlider slider;
 
     @Override
@@ -28,6 +28,7 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task);
 
         saveButton = findViewById(R.id.saveButton);
+        photoButton = findViewById(R.id.photoButton);
         uploadButton = findViewById(R.id.uploadButton);
         slider = findViewById(R.id.slider);
         nameView = findViewById(R.id.welcome);
@@ -38,18 +39,24 @@ public class TaskActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveProgess();
+                saveProgress();
             }
         });
-        uploadButton.setOnClickListener(new View.OnClickListener() {
+        photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TaskActivity.this, ImageActivity.class));
             }
         });
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
-    private void saveProgess(){
+    private void saveProgress(){
         Float progess = slider.getPosition();
         Integer max = Integer.parseInt(Objects.requireNonNull(slider.getEndText()));
         int curr = (int) (progess * max);

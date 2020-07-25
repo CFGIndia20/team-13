@@ -99,6 +99,7 @@
             android:layout_weight="4"
             android:textAlignment="center"
             android:gravity="center"
+            android:fontFamily="@font/lato"
             android:text="Name of the task"
             android:textSize="25dp"
             android:textColor="#000000"
@@ -111,6 +112,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:gravity="center"
+            android:fontFamily="@font/lato"
             android:text="Progress"
             android:textSize="20dp"
             android:textColor="#000000"
@@ -148,11 +150,27 @@
             android:text="Save"
             android:background="@color/umeedPink"
             android:textColor="@color/white"
+            android:fontFamily="@font/lato"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/photoButton"
+            />
+
+        <Button
+            android:id="@+id/photoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PHOTO"
+            android:background="@color/umeedPink"
+            android:textColor="@color/white"
+            android:fontFamily="@font/lato"
+            app:layout_constraintStart_toEndOf="@+id/saveButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/uploadButton"
             />
+
         <Button
             android:id="@+id/uploadButton"
             android:layout_width="wrap_content"
@@ -160,7 +178,8 @@
             android:text="UPLOAD"
             android:background="@color/umeedPink"
             android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@id/saveButton"
+            android:fontFamily="@font/lato"
+            app:layout_constraintStart_toEndOf="@id/photoButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

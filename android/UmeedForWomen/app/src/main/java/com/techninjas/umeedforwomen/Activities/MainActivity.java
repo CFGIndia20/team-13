@@ -12,12 +12,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.techninjas.umeedforwomen.DB.ProgressDBUtil;
+import com.techninjas.umeedforwomen.DB.TaskDBUtil;
+import com.techninjas.umeedforwomen.Models.Progress;
+import com.techninjas.umeedforwomen.Models.Task;
 import com.techninjas.umeedforwomen.Models.User;
 import com.techninjas.umeedforwomen.Network.ApiClient;
 import com.techninjas.umeedforwomen.Network.ApiInterface;
 import com.techninjas.umeedforwomen.R;
 import com.techninjas.umeedforwomen.Utils.Constants;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,14 +46,29 @@ public class MainActivity extends AppCompatActivity {
         passwordView = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
 
+        /*TaskDBUtil db = new TaskDBUtil(this );
+        //db.insertData(new ArrayList<Task>(Arrays.asList(new Task("1234", "Make a doll", 120))));
+        List<Task> tasks = db.readData();
+        for(Task task: tasks){
+            logger(task.getTask_name());
+        }*/
+        //ProgressDBUtil db = new ProgressDBUtil(this);
+        /*
+        //db.insertData(new Progress( "1234", 10, "12334343"));
+        //db.insertData(new Progress( "1234", 10, "12334343", "E:\\simply\\okman\\fine"));
+        List<Progress> progresses = db.readData();
+        for(Progress progress: progresses){
+            logger(String.valueOf(progress.getImageLocation().isEmpty()));
+        }*/
+
         loginButton.setOnClickListener(view -> {
             String mobileNo = Objects.requireNonNull(mobileNumberView.getText()).toString();
             String password = Objects.requireNonNull(passwordView.getText()).toString();
 
             logger(mobileNo + " " + password);
 
-            authCredentials(mobileNo, password);
-            //proceed("Asha");
+            //authCredentials(mobileNo, password);
+            proceed("Asha");
         });
 
         //startActivity(new Intent(MainActivity.this, ImageActivity.class));
