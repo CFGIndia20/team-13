@@ -5,9 +5,9 @@ const passport = require('passport');
 
 const User = require('../models/User');
 
-// Login Route
-router.get('/login', (req, res) => {
-   res.render('auth/login', { pageTitle: 'Login', path: '/login' });
+
+router.get('/', (req, res) => {
+   res.render('login', { pageTitle: 'Login', path: '/login' });
 });
 
 // Register API
