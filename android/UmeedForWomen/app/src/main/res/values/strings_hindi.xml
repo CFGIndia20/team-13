@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name_hi">महिलाओं के लिए उम्मेद</string>
+    <string name="motto_hi">महिला सशक्तीकरण</string>
+    <string name="userField_1_hi">मोबाइल नंबर</string>
+    <string name="userField_2_hi">ुंजिका</string>
+    <string name="btn_login_1_hi">लॉग इन करें</string>
+    <string name="btn_task_1_hi">सहेजें</string>
+    <string name="btn_task_2_hi">तस्वीर</string>
+    <string name="btn_task_3_hi">डालना</string>
+    <string name="welcome_hi">स्वागत हे</string>
+    <string name="task_title_hi">तत्कालीन कार्य</string>
+    <string name="task_progress_hi">प्रगति</string>
+    <string name="photo_title_hi">तस्वीर</string>
+</resources>

@@ -10,8 +10,9 @@ public class SharedPrefUtil {
     // properties
     private static final String NAME = "NAME";
     private static final String ID = "ID";
+    private static final String LANG = "LANG";
 
-    private SharedPrefUtil() {}
+    private SharedPrefUtil() { }
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(APP_AUTH, Context.MODE_PRIVATE);
@@ -42,6 +43,18 @@ public class SharedPrefUtil {
         editor.remove(NAME);
         editor.remove(ID);
         editor.apply();
+    }
+
+    public static void changeLanguage(Context context){
+        if(getSharedPreferences(context).getString(LANG, null) == null) {
+            final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+            editor.putString(LANG, "hi");
+            editor.apply();
+        }else{
+            final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+            editor.remove(LANG);
+            editor.apply();
+        }
     }
 
 }
