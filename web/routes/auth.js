@@ -5,7 +5,6 @@ const passport = require('passport');
 
 const User = require('../models/User');
 
-
 router.get('/', (req, res) => {
    res.render('login', { pageTitle: 'Login', path: '/login' });
 });
@@ -49,8 +48,8 @@ router.post('/register', async (req, res) => {
 // Login API
 router.post('/login', (req, res, next) => {
    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/users/login',
+      successRedirect: '/order',
+      failureRedirect: '/login',
       failureFlash: true,
    })(req, res, next);
 });

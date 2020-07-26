@@ -17,6 +17,15 @@ router.get('/order/:orderId', async (req, res) => {
    }
 });
 
+router.get('/get/tasks', async (req, res) => {
+   try {
+      const tasks = await Task.find();
+      res.status(200).send(tasks);
+   } catch (err) {
+      res.status(403).send(err);
+   }
+});
+
 // Get particular task
 router.get('/:taskId', async (req, res) => {
    try {
@@ -42,7 +51,7 @@ router.get('/woman/:womanId', async (req, res) => {
 // Get suggested workload
 router.post('/suggested', async (req, res) => {
    try {
-      console.log('reqqqqq' , req.body);
+      console.log('reqqqqq', req.body);
       const { orderId, womanId } = req.body;
       const order = await Order.findById(orderId);
       const woman = await Woman.findById(womanId);
@@ -79,7 +88,6 @@ router.post('/assign', async (req, res) => {
    }
 });
 
-<<<<<<< HEAD
 // Get Progress of each order
 router.get('/calculate/progress', async (req, res) => {
    try {
@@ -101,6 +109,4 @@ router.get('/calculate/progress', async (req, res) => {
    }
 });
 
-=======
->>>>>>> cf1c8b7ac577dd12bc0a0377b463d8de4ff4e3c5
 module.exports = router;
