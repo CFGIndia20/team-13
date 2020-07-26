@@ -37,6 +37,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.techninjas.umeedforwomen.DB.ProgressDBUtil;
+import com.techninjas.umeedforwomen.Models.Progress;
 import com.techninjas.umeedforwomen.R;
 import com.techninjas.umeedforwomen.Utils.Constants;
 
@@ -62,8 +64,8 @@ public class ImageActivity extends AppCompatActivity {
     // Elements
     private ImageButton ibBack;
     private ImageView ivImage;
-    //private Button btnSave;
-    private TextView status;
+    private Button btnSave;
+    //private TextView status;
     private ProgressBar progressBar;
 
     private String tempFilePath, compressedFilePath;
@@ -83,14 +85,20 @@ public class ImageActivity extends AppCompatActivity {
         // Clicks
         ibBack.setOnClickListener(view -> this.onBackPressed());
 
-        /*btnSave.setOnClickListener(view -> {
+        btnSave.setOnClickListener(view -> {
+            Log.d("APP_LOGS", "Here");
             if (imageSaved && compressedPhotoUri != null) {
-//                Intent intent = new Intent(ImageActivity.this, FormActivity.class);
-//                intent.putExtra(Constants.PHOTO_PATH, compressedFilePath);
-//                startActivity(intent);
-//                this.finish();
+                Log.d("APP_LOGS", "Here");
+                ProgressDBUtil progressDBUtil = new ProgressDBUtil(this);
+                String taskId = getIntent().getStringExtra("id");
+                String qty = getIntent().getStringExtra("qty");
+                String timestamp = (new Date()).toString();
+                Progress progress = new Progress(taskId, Integer.parseInt(qty), timestamp, compressedFilePath);
+                //Progress progress = new Progress("100", 10, timestamp, com)
+                progressDBUtil.insertData(progress);
+                this.finish();
             } else Toast.makeText(this, "Please upload an image first", Toast.LENGTH_SHORT).show();
-        });*/
+        });
     }
 
     private void init() {
@@ -98,8 +106,8 @@ public class ImageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ibBack = findViewById(R.id.ibImageBack);
         ivImage = findViewById(R.id.ivImage);
-        //btnSave = findViewById(R.id.btnImageSave);
-        status = findViewById(R.id.status);
+        btnSave = findViewById(R.id.btnImageSave);
+        //status = findViewById(R.id.status);
         progressBar = findViewById(R.id.progressBarImage);
 
         checkPermissions();
@@ -379,16 +387,18 @@ public class ImageActivity extends AppCompatActivity {
             compressedPhotoUri = Uri.parse(compressedFilePath);
             ivImage.setImageURI(compressedPhotoUri);
             imageSaved = true;
-            status.setText("Image Saved Locally!");
+
+            //successfulEnding();
+            //status.setText("Image Saved Locally!");
             //Log.d("APP_LOGS", encodeFile(ImageActivity.this, compressedPhotoUri));
-            encodeFile(ImageActivity.this, compressedPhotoUri);
-            Handler handler = new Handler();
+            //encodeFile(ImageActivity.this, compressedFilePath);
+            /*Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     successfulEnding();
                 }
-            }, 3000);
+            }, 3000);*/
         }
     }
 
@@ -404,10 +414,6 @@ public class ImageActivity extends AppCompatActivity {
             cursor.close();
             return realPath;
         }
-    }
-
-    private void successfulEnding(){
-        this.finish();
     }
 
     @Override

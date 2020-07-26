@@ -71,7 +71,7 @@
         android:padding="16dp"
         android:layout_height="wrap_content">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,9 +81,9 @@
             android:textColor="#000000"
             android:textAlignment="center"
             android:gravity="center"
-            />
+            />-->
 
-        <!--<Button
+        <Button
             android:id="@+id/btnImageSave"
             android:background="@color/umeedPink"
             android:text="Save"
@@ -92,7 +92,7 @@
             android:fontFamily="@font/lato"
             android:textAllCaps="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />-->
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

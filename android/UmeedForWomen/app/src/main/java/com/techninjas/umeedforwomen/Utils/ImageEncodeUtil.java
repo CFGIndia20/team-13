@@ -16,9 +16,9 @@ public class ImageEncodeUtil {
 
     public ImageEncodeUtil() {}
     // Encode a file
-    public static String encodeFile(Context context, Uri imageUri) {
+    public static String encodeFile(Context context, String path){//Uri imageUri) {
         try {
-            InputStream inputStream = context.getContentResolver().openInputStream(Uri.fromFile(new File(imageUri.getPath())));
+            InputStream inputStream = context.getContentResolver().openInputStream(Uri.fromFile(new File(path)));
             if (inputStream != null) {
                 byte[] bytes;
                 byte[] buffer = new byte[8192];

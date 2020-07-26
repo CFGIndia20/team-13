@@ -19,4 +19,7 @@ public interface ApiInterface {
                                //@Field("api_key") String api_key);
     @GET("women/tasks")
     Call<List<Task>> fetchTasks(@Field("id") String id);
+    @POST("woman/")
+    Call<Void> uploadProgress(@Field("taskId") String id, @Field("qty") int qty, @Field("timestamp") String timestamp,
+                              @Field("image") String image, @Field("image_type") String image_type);
 }
