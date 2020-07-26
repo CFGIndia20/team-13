@@ -44,15 +44,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use('/', require('./routes/index'));
+app.use('/login', require('./routes/auth'));
 app.use('/users', require('./routes/auth'));
 app.use('/skills', require('./routes/skills'));
 app.use('/districts', require('./routes/district'));
 app.use('/women', require('./routes/woman'));
 app.use('/product', require('./routes/product'));
 app.use('/order', require('./routes/order'));
-app.use('/task', require('./routes/task'));
-
+app.use('/', require('./routes/admin'));
 app.use(errorController.get404);
 
 const PORT = process.env.PORT || 3000;

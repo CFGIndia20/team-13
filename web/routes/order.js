@@ -7,7 +7,8 @@ const Order = require('../models/Order');
 router.get('/', async (req, res) => {
    try {
       const orders = await Order.find({});
-      res.status(200).send(orders);
+      //res.status(200).send(orders);
+      res.render('orders', { pageTitle: 'Orders Page', path: '/orders' ,orders: orders });
    } catch (err) {
       res.status(403).send(err);
    }
@@ -32,7 +33,6 @@ router.post('/', async (req, res) => {
          name,
          product,
          quantity,
-         remainingQuantity: quantity,
       });
       await newOrder.save();
       res.status(200).json(newOrder);

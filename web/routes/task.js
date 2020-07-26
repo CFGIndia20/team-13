@@ -29,9 +29,9 @@ router.get('/:taskId', async (req, res) => {
 });
 
 // Get all tasks by woman id
-router.post('/woman', async (req, res) => {
+router.get('/woman/:womanId', async (req, res) => {
    try {
-      const id = req.body.womanId;
+      const id = req.params.womanId;
       const tasks = await Task.find({ woman: id });
       res.status(200).send(tasks);
    } catch (err) {
@@ -42,6 +42,7 @@ router.post('/woman', async (req, res) => {
 // Get suggested workload
 router.post('/suggested', async (req, res) => {
    try {
+      console.log('reqqqqq' , req.body);
       const { orderId, womanId } = req.body;
       const order = await Order.findById(orderId);
       const woman = await Woman.findById(womanId);
@@ -72,81 +73,13 @@ router.post('/assign', async (req, res) => {
       });
 
       await newTask.save();
-      const remainingHours = Math.max(
-         woman.amountOfHours - product.hours * quantity,
-         0
-      );
-      await Woman.findByIdAndUpdate(womanId, {
-         amountOfHours: remainingHours,
-      });
-      const remaining = order.remainingQuantity - quantity;
-      await Order.findByIdAndUpdate(orderId, { remainingQuantity: remaining });
-      res.status(200).send(newTask);
-   } catch (err) {
-      console.log(err);
-      res.status(403).send(err);
-   }
-});
-
-// Get all tasks for woman id
-router.get('/all', async (req, res) => {
-   try {
-      const womanId = req.body.womanId;
-      const tasks = await Task.find({ woman: womanId });
-      res.status(200).send(tasks);
-   } catch (err) {
-      res.status(403).send(err);
-   }
-});
-
-// Upload Image API
-router.post('/upload', async (req, res) => {
-   try {
-      const { taskId, image, imageType, timestamp, currentQuantity } = req.body;
-      if (image == null) return res.status(403).json({ msg: 'Image is null' });
-      if (imageType == 'jpg' || imageType == 'png') {
-         const buffer = Buffer.from(image, 'base64');
-         const type = 'image/' + imageType;
-         const date = new Date(timestamp);
-         const months = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-         ];
-         const formattedDate =
-            date.getDate() +
-            ' ' +
-            months[date.getMonth()] +
-            ' ' +
-            date.getFullYear() +
-            ' ' +
-            date.getHours() +
-            ':' +
-            date.getMinutes();
-         await Task.findByIdAndUpdate(taskId, {
-            image: buffer,
-            imageType: type,
-            lastModified: formattedDate,
-            currentQuantity,
-         });
-         res.status(200).send({ msg: 'Successful' });
-      }
-
       res.status(200).send(task);
    } catch (err) {
       res.status(403).send(err);
    }
 });
 
+<<<<<<< HEAD
 // Get Progress of each order
 router.get('/calculate/progress', async (req, res) => {
    try {
@@ -168,4 +101,6 @@ router.get('/calculate/progress', async (req, res) => {
    }
 });
 
+=======
+>>>>>>> cf1c8b7ac577dd12bc0a0377b463d8de4ff4e3c5
 module.exports = router;

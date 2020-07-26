@@ -32,11 +32,12 @@ router.post('/login', async (req, res) => {
    }
 });
 
-// Get all women
+//Get all women
 router.get('/', async (req, res) => {
    try {
       const women = await Woman.find({});
-      res.status(200).send(women);
+     // res.status(200).send(women);
+     res.status(200).render('attendance', { pageTitle: 'Attendance', path: '/attendance' , women: women});
    } catch (err) {
       res.status(403).send(err);
    }
@@ -47,23 +48,25 @@ router.get('/:districtId', async (req, res) => {
    try {
       const id = req.params.districtId;
       const women = await Woman.find({ district: id });
+      console.log('message');
       res.status(200).send(women);
    } catch (err) {
       res.status(403).send(err);
    }
 });
 
-// Get all women by district id
+//Get all women by district id
 router.get('/sort/hours', async (req, res) => {
    try {
       const women = await Woman.find().sort('-amountOfHours -efficiency');
-      res.status(200).send(women);
+      //res.status(200).send(women);
+      res.status(200).render('dashboard', { pageTitle: 'DashBoard', path: '/dashboard' , women: women});
    } catch (err) {
       res.status(403).send(err);
    }
 });
 
-// Register woman
+// // Register woman
 router.post('/register', async (req, res) => {
    try {
       const { name, phone, password, district } = req.body;
