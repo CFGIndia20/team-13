@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/lato"
-        android:text="Welcome, !"
+        android:text="@string/welcome"
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="#000000" />
@@ -77,7 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/lato"
-        android:text="Current Task"
+        android:text="@string/task_title"
         android:textSize="25dp"
         android:textColor="#000000" />
 
@@ -123,7 +123,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:fontFamily="@font/lato"
-            android:text="Progress"
+            android:text="@string/task_progress"
             android:textSize="20dp"
             android:textColor="#000000"
             android:textStyle="bold"/>

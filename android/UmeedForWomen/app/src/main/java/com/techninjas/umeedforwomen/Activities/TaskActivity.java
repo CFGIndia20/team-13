@@ -68,7 +68,7 @@ public class TaskActivity extends AppCompatActivity {
         //(new ProgressDBUtil())
 
         String name = SharedPrefUtil.getName(this);
-        nameView.setText("Welcome, " + name + "!");
+        nameView.setText(nameView.getText() + ", " + name + "!");
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

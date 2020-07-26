@@ -85,7 +85,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/women">
               <span data-feather="shopping-cart"></span>
-              attendance
+              Attendance
             </a>
           </li>
           <li class="nav-item">
@@ -97,7 +97,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/assigning">
               <span data-feather="users"></span>
-              assigning
+              Assigning
             </a>
           </li>
 
@@ -115,24 +115,24 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">woman name</th>
-            <th scope="col">efficiency</th>
-            <th scope="col">pay</th>
+            <th scope="col">Id</th>
+            <th scope="col">Woman Name</th>
+            <th scope="col">Efficiency</th>
+            <th scope="col">Pay</th>
           </tr>
         </thead>
         <tbody>
             <% if(women.length > 0){%>
                 <% women.forEach(woman => { %>
              <tr>
-                <th scope="row"><%= woman.id %></th>
-                <td><%= woman.name %></td>
-                <td><%= woman.efficiency %></td>
-                <td><%= woman.pay %></td>
+                <th scope="row"><%= woman.Id %></th>
+                <td><%= woman.Name %></td>
+                <td><%= woman.Efficiency %></td>
+                <td><%= woman.Pay %></td>
             </tr>
           <% })%>
           <% }else{%>
-            <h1>no womwn free</h1>
+            <h1>no woman free</h1>
             <% }%>
         </tbody>
       </table>
