@@ -15,6 +15,10 @@ const orderSchema = mongoose.Schema({
       default: 0,
       required: true,
    },
+   remainingQuantity: {
+      type: Number,
+      required: true,
+   },
 });
 
 module.exports = mongoose.model('Order', orderSchema);

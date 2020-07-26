@@ -51,6 +51,7 @@ app.use('/districts', require('./routes/district'));
 app.use('/women', require('./routes/woman'));
 app.use('/product', require('./routes/product'));
 app.use('/order', require('./routes/order'));
+app.use('/task', require('./routes/task'));
 
 app.use(errorController.get404);
 

@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
          name,
          product,
          quantity,
+         remainingQuantity: quantity,
       });
       await newOrder.save();
       res.status(200).json(newOrder);
