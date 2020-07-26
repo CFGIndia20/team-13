@@ -10,8 +10,8 @@ We also have many future plans for the future, ranging from automatic task assig
 
 ## Technology Stack
 
-1. Developed web application using node.js/express
-1. Developed android application using Android (Java)
+1. Developed web application using node.js/express - web/
+1. Developed android application using Android Studio (Java) - android/UmeedForWomen/
 1. Backend is done using MongoDB Atlas
 
 ## Media
