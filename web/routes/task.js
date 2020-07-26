@@ -159,7 +159,7 @@ router.get('/calculate/progress', async (req, res) => {
             const task = tasks[i];
             completed += task.currentQuantity;
          }
-         order.progress = Math.floor(completed / order.quantity);
+         order.progress = (completed / order.quantity) * 100;
       }
       res.status(200).send(orders);
    } catch (err) {
