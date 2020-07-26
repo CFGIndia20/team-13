@@ -12,13 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ramotion.fluidslider.FluidSlider;
+import com.techninjas.umeedforwomen.DB.ProgressDBUtil;
 import com.techninjas.umeedforwomen.DB.TaskDBUtil;
+import com.techninjas.umeedforwomen.Models.Progress;
 import com.techninjas.umeedforwomen.Models.Task;
 import com.techninjas.umeedforwomen.Models.User;
 import com.techninjas.umeedforwomen.Network.ApiClient;
 import com.techninjas.umeedforwomen.Network.ApiInterface;
 import com.techninjas.umeedforwomen.R;
 import com.techninjas.umeedforwomen.Utils.Constants;
+import com.techninjas.umeedforwomen.Utils.ImageEncodeUtil;
 import com.techninjas.umeedforwomen.Utils.SharedPrefUtil;
 
 import java.text.SimpleDateFormat;
@@ -58,6 +61,8 @@ public class TaskActivity extends AppCompatActivity {
         taskNameView = findViewById(R.id.task_name);
         db = new TaskDBUtil(TaskActivity.this);
 
+        //(new ProgressDBUtil())
+
         String name = SharedPrefUtil.getName(this);
         nameView.setText("Welcome, " + name + "!");
 
@@ -70,13 +75,20 @@ public class TaskActivity extends AppCompatActivity {
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TaskActivity.this, ImageActivity.class));
+                Intent intent = new Intent(TaskActivity.this, ImageActivity.class);
+
+                intent.putExtra("id", tasks.get(0).getId());
+                intent.putExtra("qty", slider.getBubbleText());
+
+                startActivity(intent);
+
+                saveProgress();
             }
         });
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                uploadData();
             }
         });
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +101,35 @@ public class TaskActivity extends AppCompatActivity {
         });
 
         getTasks();
+    }
+
+    private void uploadData(){
+        ProgressDBUtil progressDBUtil = new ProgressDBUtil(this);
+        logger(String.valueOf(progressDBUtil.readData().size()));
+        List<Progress> progresses = progressDBUtil.readData();
+        for(Progress progress: progresses){
+
+            Retrofit retrofit = ApiClient.getClient();
+            ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+            String image = ImageEncodeUtil.encodeFile(this, progress.getImageLocation());
+            Call<Void> call = apiInterface.uploadProgress(progress.getTaskId(), progress.getQty(), progress.getTimestamp(), image, "jpg");
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response.isSuccessful()){
+                        toast("Success!");
+                    }else{
+                        toast("Unsuccessful request");
+                    }
+                }
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    toast("Unable to make request");
+                }
+            });
+
+
+        }
     }
 
     private void getTasks(){
