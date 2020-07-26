@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.techninjas.umeedforwomen.Models.Progress;
 import com.techninjas.umeedforwomen.Models.Task;
@@ -37,9 +38,10 @@ public class TaskDBUtil extends SQLiteOpenHelper {
     public boolean insertData(List<Task> tasks){
         SQLiteDatabase db = this.getWritableDatabase();
         for(Task task: tasks){
+            Log.d("APP_LOGS", task.getId() + " " + task.getTask_name() + " " + task.getQty());
             ContentValues contentValues = new ContentValues();
             contentValues.put(TASK_ID, task.getId());
-            contentValues.put(TASK_NAME, task.getTask_name());
+            contentValues.put(TASK_NAME, task.getTask_name() == null ? "Task - 1" : task.getTask_name());
             contentValues.put(TASK_QTY, task.getQty());
             contentValues.put(TASK_DONE, 0);
             long res = db.insert(TABLE_NAME, null, contentValues);

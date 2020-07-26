@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         passwordView = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
 
-        TaskDBUtil db = new TaskDBUtil(this );
+        /*TaskDBUtil db = new TaskDBUtil(this );
         db.insertData(new ArrayList<Task>(Arrays.asList(new Task("1234", "Make a doll", 120))));
         List<Task> tasks = db.readData();
         for(Task task: tasks){
             logger(task.getTask_name());
-        }
+        }*/
         //ProgressDBUtil db = new ProgressDBUtil(this);
         /*
         //db.insertData(new Progress( "1234", 10, "12334343"));
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
             logger(mobileNo + " " + password);
 
-            //authCredentials(mobileNo, password);
-            proceed("Asha", "000");
+            authCredentials(mobileNo, password);
+            //proceed("Asha", "000");
         });
 
         //ImageEncodeUtil.encodeFile()
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if(mobileNo.isEmpty() || password.isEmpty()){
             toast("Please enter your mobile no and password!");
         }
-
+        logger("here");
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         Call<User> call = apiInterface.loginUser(mobileNo, password);
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
+                    logger("here!");
                     assert response.body() != null;
                     String name = response.body().getName();
                     String id = response.body().getId();

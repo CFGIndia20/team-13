@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,7 @@ public class TaskActivity extends AppCompatActivity {
     private TextView nameView, taskNameView;
     private Button saveButton, photoButton, uploadButton;
     ImageButton logoutButton;
+    private ProgressBar progressBar;
     private FluidSlider slider;
     private List<Task> tasks;
     TaskDBUtil db;
@@ -59,6 +62,7 @@ public class TaskActivity extends AppCompatActivity {
         slider = findViewById(R.id.slider);
         nameView = findViewById(R.id.welcome);
         taskNameView = findViewById(R.id.task_name);
+        progressBar = findViewById(R.id.progressBarImage);
         db = new TaskDBUtil(TaskActivity.this);
 
         //(new ProgressDBUtil())
@@ -99,7 +103,8 @@ public class TaskActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        //(new ProgressDBUtil(this)).deleteAll();
+        //db.deleteAll();
         getTasks();
     }
 
@@ -112,6 +117,10 @@ public class TaskActivity extends AppCompatActivity {
             Retrofit retrofit = ApiClient.getClient();
             ApiInterface apiInterface = retrofit.create(ApiInterface.class);
             String image = ImageEncodeUtil.encodeFile(this, progress.getImageLocation());
+            logger(progress.getTaskId());
+            logger(String.valueOf(progress.getQty()));
+            logger(progress.getTimestamp());
+            logger(image);
             Call<Void> call = apiInterface.uploadProgress(progress.getTaskId(), progress.getQty(), progress.getTimestamp(), image, "jpg");
             call.enqueue(new Callback<Void>() {
                 @Override
@@ -119,6 +128,7 @@ public class TaskActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         toast("Success!");
                     }else{
+                        logger(response.toString());
                         toast("Unsuccessful request");
                     }
                 }
@@ -127,7 +137,7 @@ public class TaskActivity extends AppCompatActivity {
                     toast("Unable to make request");
                 }
             });
-
+            progressDBUtil.deleteData(progress.getId());
 
         }
     }
@@ -135,8 +145,10 @@ public class TaskActivity extends AppCompatActivity {
     private void getTasks(){
         tasks = db.readData();
         if(tasks.isEmpty()){
-            dummy();
-            //fetchAll();
+            progressBar.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            //dummy();
+            fetchAll();
             tasks = db.readData();
             if(!tasks.isEmpty()){
                 updateUI();
@@ -160,7 +172,10 @@ public class TaskActivity extends AppCompatActivity {
                 return null;
             }
         });
-        taskNameView.setText(task.getTask_name());
+        taskNameView.setText(task.getTask_name() == null ? "Task - 1" : task.getTask_name());
+
+        progressBar.setVisibility(View.GONE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     private void dummy(){
@@ -179,6 +194,7 @@ public class TaskActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     tasks = response.body();
                     db.insertData(tasks);
+                    updateUI();
                 }else{
                     toast("Unsuccessful request");
                 }

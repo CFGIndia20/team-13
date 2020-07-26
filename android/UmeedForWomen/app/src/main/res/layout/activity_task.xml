@@ -110,7 +110,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:fontFamily="@font/lato"
-            android:text="Name of the task"
+            android:text=""
             android:textSize="25dp"
             android:textColor="#000000"
             android:textStyle="bold"/>
@@ -131,7 +131,9 @@
             <com.ramotion.fluidslider.FluidSlider
                 android:id="@+id/slider"
                 android:layout_width="350dp"
+                card_view:initial_position="0"
                 android:layout_height="wrap_content"
+                card_view:text_size="15sp"
                 android:layout_gravity="center"
                 android:layout_weight="3"
                 app:bar_color="@color/umeedPink"
@@ -196,5 +198,17 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBarImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/progress_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

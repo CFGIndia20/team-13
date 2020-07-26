@@ -41,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
                 android:layout_marginHorizontal="16dp"
-                android:text="Photo"
+                android:text="@string/photo_title"
                 android:fontFamily="@font/lato"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -86,7 +86,7 @@
         <Button
             android:id="@+id/btnImageSave"
             android:background="@color/umeedPink"
-            android:text="Save"
+            android:text="@string/btn_task_1"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:fontFamily="@font/lato"

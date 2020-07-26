@@ -86,9 +86,9 @@ public class ImageActivity extends AppCompatActivity {
         ibBack.setOnClickListener(view -> this.onBackPressed());
 
         btnSave.setOnClickListener(view -> {
-            Log.d("APP_LOGS", "Here");
+            //Log.d("APP_LOGS", "Here");
             if (imageSaved && compressedPhotoUri != null) {
-                Log.d("APP_LOGS", "Here");
+                //Log.d("APP_LOGS", "Here");
                 ProgressDBUtil progressDBUtil = new ProgressDBUtil(this);
                 String taskId = getIntent().getStringExtra("id");
                 String qty = getIntent().getStringExtra("qty");
@@ -128,7 +128,7 @@ public class ImageActivity extends AppCompatActivity {
                 permissionsList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             if (!fineLocationPermission)
                 permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            Log.d("APP_LOGS", permissionsList.toString());
+            //Log.d("APP_LOGS", permissionsList.toString());
             if (permissionsList.size() == 0) {
                 dispatchCameraIntent();
                 return;
@@ -202,7 +202,7 @@ public class ImageActivity extends AppCompatActivity {
     private File createFile() {
         @SuppressLint("SimpleDateFormat")
         String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDirectory = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + File.separator + "Team Zoom");
+        File storageDirectory = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + File.separator + "Team Tech Ninjas");
 
         boolean directoryExists = true;
 
@@ -338,7 +338,7 @@ public class ImageActivity extends AppCompatActivity {
         }
 
         public String getFilename() {
-            File file = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + File.separator + "Team Zoom");
+            File file = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + File.separator + "Team Tech Ninjas");
             if (!file.exists()) {
                 if (file.mkdirs())
                     return (file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".jpg");
@@ -383,7 +383,7 @@ public class ImageActivity extends AppCompatActivity {
             if (tempFile.delete())
                 Log.d(TAG, "onPostExecute: File deleted...");
             else Log.d(TAG, "onPostExecute: File not deleted...");
-
+            Log.d("APP_LOGS", compressedFilePath);
             compressedPhotoUri = Uri.parse(compressedFilePath);
             ivImage.setImageURI(compressedPhotoUri);
             imageSaved = true;

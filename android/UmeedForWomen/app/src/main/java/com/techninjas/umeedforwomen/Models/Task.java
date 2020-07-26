@@ -7,8 +7,10 @@ public class Task {
     private String id;
     @SerializedName("task_name")
     private String task_name;
-    @SerializedName("qty")
+    @SerializedName("quantity")
     private int qty;
+    @SerializedName("currentQuantity")
+    private int currentQty;
 
     private int done = 0;
 

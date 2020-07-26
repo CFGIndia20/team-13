@@ -17,9 +17,11 @@ public interface ApiInterface {
     Call<User> loginUser(@Field("phone") String phone,
                                @Field("password") String password);
                                //@Field("api_key") String api_key);
-    @GET("women/tasks")
-    Call<List<Task>> fetchTasks(@Field("id") String id);
-    @POST("woman/")
-    Call<Void> uploadProgress(@Field("taskId") String id, @Field("qty") int qty, @Field("timestamp") String timestamp,
-                              @Field("image") String image, @Field("image_type") String image_type);
+    @FormUrlEncoded
+    @POST("task/woman")
+    Call<List<Task>> fetchTasks(@Field("womanId") String id);
+    @FormUrlEncoded
+    @POST("task/upload")
+    Call<Void> uploadProgress(@Field("taskId") String id, @Field("currentQuantity") int qty, @Field("timestamp") String timestamp,
+                              @Field("image") String image, @Field("imageType") String image_type);
 }

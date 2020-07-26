@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Umeed For Women</string>
+    <string name="motto">Empowering Women!</string>
+    <string name="userField_1">Mobile No</string>
+    <string name="userField_2">Password</string>
+    <string name="btn_login_1">Login</string>
+    <string name="btn_task_1">Save</string>
+    <string name="btn_task_2">Photo</string>
+    <string name="btn_task_3">Upload</string>
+    <string name="welcome">Welcome</string>
+    <string name="task_title">Current Task</string>
+    <string name="task_progress">Progress</string>
+    <string name="photo_title">Photo</string>
 </resources>

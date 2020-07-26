@@ -8,10 +8,10 @@
         android:shape="ring"
         android:useLevel="false">
         <gradient
-            android:centerColor="#00FD1D1D"
+            android:centerColor="@color/umeedPink"
             android:centerY="0.5"
             android:endColor="@color/colorAccent"
-            android:startColor="#00FD1D1D"
+            android:startColor="@color/umeedPink"
             android:type="sweep"
             android:useLevel="false" />
     </shape>
