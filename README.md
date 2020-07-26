@@ -14,5 +14,7 @@ We also have many future plans for the future, ranging from automatic task assig
 1. Developed android application using Android (Java)
 1. Backend is done using MongoDB Atlas
 
-Project - Youtube Link : https://www.youtube.com/watch?v=BmsiWDGqfW4&feature=youtu.be
-          Drive : https://drive.google.com/file/d/19T5MfsBgiYXYyu_NoBRqrqP7PkfN0lsz/view?usp=sharing
+## Media
+
+Youtube Link : https://www.youtube.com/watch?v=BmsiWDGqfW4&feature=youtu.be
+Drive : https://drive.google.com/file/d/19T5MfsBgiYXYyu_NoBRqrqP7PkfN0lsz/view?usp=sharing
