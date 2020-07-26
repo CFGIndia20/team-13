@@ -147,4 +147,25 @@ router.post('/upload', async (req, res) => {
    }
 });
 
+// Get Progress of each order
+router.get('/calculate/progress', async (req, res) => {
+   try {
+      const orders = await Order.find();
+      for (let i = 0; i < orders.length; i++) {
+         order = orders[i];
+         const tasks = await Task.find({ order: order._id });
+         let completed = 0;
+         for (let j = 0; j < tasks.length; j++) {
+            const task = tasks[i];
+            completed += task.currentQuantity;
+         }
+         order.progress = Math.floor(completed / order.quantity);
+      }
+      res.status(200).send(orders);
+   } catch (err) {
+      console.log(err);
+      res.status(403).send(err);
+   }
+});
+
 module.exports = router;
