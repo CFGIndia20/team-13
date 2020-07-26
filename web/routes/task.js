@@ -102,7 +102,7 @@ router.get('/all', async (req, res) => {
 // Upload Image API
 router.post('/upload', async (req, res) => {
    try {
-      const { taskId, image, imageType, timestamp } = req.body;
+      const { taskId, image, imageType, timestamp, currentQuantity } = req.body;
       if (image == null) return res.status(403).json({ msg: 'Image is null' });
       if (imageType == 'jpg' || imageType == 'png') {
          const buffer = Buffer.from(image, 'base64');
@@ -136,6 +136,7 @@ router.post('/upload', async (req, res) => {
             image: buffer,
             imageType: type,
             lastModified: formattedDate,
+            currentQuantity,
          });
          res.status(200).send({ msg: 'Successful' });
       }
